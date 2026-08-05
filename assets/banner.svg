@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="200" viewBox="0 0 1200 200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b2a4a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="icon" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8ab4f8"/>
+      <stop offset="100%" stop-color="#e8b34b"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#e8b34b"/>
+      <stop offset="100%" stop-color="#8ab4f8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="200" fill="url(#bg)"/>
+  <!-- 天平（正义）图标 -->
+  <circle cx="130" cy="56" r="7" fill="url(#icon)"/>
+  <rect x="126" y="62" width="8" height="94" rx="4" fill="url(#icon)"/>
+  <rect x="102" y="156" width="56" height="8" rx="4" fill="url(#icon)"/>
+  <rect x="84" y="52" width="92" height="8" rx="4" fill="url(#icon)"/>
+  <line x1="86" y1="60" x2="86" y2="80" stroke="#8ab4f8" stroke-width="5" stroke-linecap="round"/>
+  <line x1="174" y1="60" x2="174" y2="80" stroke="#8ab4f8" stroke-width="5" stroke-linecap="round"/>
+  <path d="M62 82 Q86 106 110 82 Z" fill="none" stroke="#e8b34b" stroke-width="5" stroke-linecap="round"/>
+  <path d="M150 82 Q174 106 198 82 Z" fill="none" stroke="#e8b34b" stroke-width="5" stroke-linecap="round"/>
+  <!-- 标题与副标题 -->
+  <text x="252" y="100" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="58" font-weight="700" fill="#ffffff" letter-spacing="1">Legal-Workflow-Chain</text>
+  <text x="252" y="138" font-family="'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#a3b6d8">法律 AI 工作流方法论 · Legal AI Workflow Methodology</text>
+  <rect x="254" y="156" width="360" height="4" rx="2" fill="url(#line)"/>
+</svg>

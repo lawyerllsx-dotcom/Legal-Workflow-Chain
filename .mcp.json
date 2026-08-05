@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "pdf-tools": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["<你的绝对路径>/pdf-tools-lite.py"],
+      "description": "本地 PDF 处理（合并/拆分/旋转/文本提取/图像），无密钥，PyMuPDF 引擎"
+    },
+    "safe-docx": {
+      "type": "stdio",
+      "command": "safe-docx",
+      "args": [],
+      "description": "本地 .docx 手术式编辑（保留格式 + 修订模式），无密钥"
+    },
+    "tavily": {
+      "type": "http",
+      "url": "<你的 tavily MCP endpoint，如 https://mcp.tavily.com/mcp>",
+      "env": { "TAVILY_API_KEY": "${TAVILY_API_KEY}" },
+      "description": "联网搜索 / 网页提取 / 研究（需自备 TAVILY_API_KEY，https://tavily.com）"
+    },
+    "yuandian-law": {
+      "type": "http",
+      "url": "<你的元典 MCP endpoint>",
+      "env": { "YUANDIAN_API_KEY": "${YUANDIAN_API_KEY}" },
+      "description": "中国法律法规语义检索（需申请元典开放平台 key）"
+    },
+    "yuandian-case": {
+      "type": "http",
+      "url": "<你的元典 MCP endpoint>",
+      "env": { "YUANDIAN_API_KEY": "${YUANDIAN_API_KEY}" },
+      "description": "中国裁判文书检索（需申请元典开放平台 key）"
+    },
+    "yuandian-company": {
+      "type": "http",
+      "url": "<你的元典 MCP endpoint>",
+      "env": { "YUANDIAN_API_KEY": "${YUANDIAN_API_KEY}" },
+      "description": "中国企业信息检索（需申请元典开放平台 key）"
+    }
+  }
+}
