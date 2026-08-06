@@ -14,7 +14,7 @@
 [![Stars](https://img.shields.io/github/stars/lawyerllsx-dotcom/Legal-Workflow-Chain)](#-项目)
 [![Forks](https://img.shields.io/github/forks/lawyerllsx-dotcom/Legal-Workflow-Chain)](#-项目)
 
-[设计理念](#-设计理念--design-philosophy) · [技能总览](#-技能总览--skill-index) · [深链与接力](#-深链与接力--the-deep-chain) · [质量保障](#-质量保障--回归测试) · [使用方式](#-使用方式--usage) · [贡献](#-贡献--contributing) · [许可与责任](#-许可与责任--license)
+[设计理念](#-设计理念--design-philosophy) · [技能总览](#-技能总览--skill-index) · [深链与接力](#-深链与接力--the-deep-chain) · [质量保障](#-质量保障--回归测试) · [使用方式](#-使用方式--usage) · [WorkBuddy 迁移](#-workbuddy-迁移方案) · [贡献](#-贡献--contributing) · [许可与责任](#-许可与责任--license)
 
 ---
 
@@ -227,8 +227,17 @@ Legal-Workflow-Chain/
 │   ├── wiki-知识库搭建.md # Obsidian wiki 怎么搭、和 CLAUDE.md 怎么联动
 │   └── credits.md        # 来源对照 + 许可声明
 ├── assets/              # README 视觉资产(banner)
-└── skills/              # 全部 7 个技能,每个一个目录 + SKILL.md
+├── skills/              # 全部 7 个技能,每个一个目录 + SKILL.md(Claude Code 版)
+└── workbuddy/           # WorkBuddy 迁移方案(适配版 skill/编排/安装引导)
 ```
+
+## 🔀 WorkBuddy 迁移方案
+
+想把这套工作流装进 **腾讯 WorkBuddy**（桌面 agent，低门槛，无需装 VS Code + Claude Code）？项目提供**第二套方案**：
+
+- **[workbuddy/ 迁移方案](workbuddy/README.md)** — WorkBuddy 适配版：11 个技能（含 `workflow-overview` 总览）+ 编排规则 + 引导式安装（模型 / MCP / Obsidian / OCR 两档）
+- **核心区别**：Claude Code 版靠 CLAUDE.md **强约束接力**；WorkBuddy 版靠**自主规划 + 触发钩子**（description 统一优化 + 总览 skill），适配 WorkBuddy 的模型触发机制
+- **两套独立**：主仓库 `skills/` 是 Claude Code 版；`workbuddy/skills/` 是 WorkBuddy 适配版（description 已为 WorkBuddy 模型定制）
 
 ## 🤝 贡献 · Contributing
 
