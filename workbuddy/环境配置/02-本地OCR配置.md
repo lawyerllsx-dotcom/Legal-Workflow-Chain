@@ -21,11 +21,24 @@
    pip install -r requirements.txt
    ```
 
-## 三、下载 OCR 模型（约 2.5G）
+## 三、OCR 模型与复验机制（V6 + VL）
 
-- **PP-OCRv6**（常规文档 OCR，约 232M）和 **PaddleOCR-VL-1.6**（复杂版式，约 2.3G）
-- 从 [ModelScope](https://modelscope.cn) 或 [Hugging Face](https://huggingface.co) 搜 `PaddleOCR-VL`、`PP-OCRv6` 下载
-- 把模型放到 OCR 目录下（如 `<ocr目录>\PP-OCRv6` 和 `<ocr目录>\PaddleOCR-VL-1.6-ov`）
+**两套引擎（内置自动切换，与作者环境一致）**：
+
+| 引擎 | 用途 | 速度 | 说明 |
+|------|------|------|------|
+| **V6**（默认）| 常规文档 OCR | ~2.8 秒/页 | PP-OCRv6 medium（det / rec / 文本方向）|
+| **VL**（复验）| 复杂版式 | ~20 秒/页 | PaddleOCR-VL-1.6，**低产页 / 低置信行自动用 VL 复验**（内置 Auto-fallback 逻辑）|
+
+**模型获取**：
+- **V6**：`ocr_contract.py` 里指定 `PP-OCRv6_medium_det/rec`，PaddleOCR **首次运行自动下载**官方模型，无需手动。
+- **VL（关键，必须 OpenVINO 版）**：
+  - ModelScope 搜 **`zhaohb/PaddleOCR-VL-1.6-ov`**（作者 zhaohb 的 OpenVINO 转换仓库），下载到 `<ocr目录>\PaddleOCR-VL-1.6-ov`
+  - 布局模型放 `.cache/modelscope/zhaohb/PaddleOCR-VL-1.5-ov/PP-DoclayoutV3-ov/`
+  - 引擎 `github.com/zhaohb/paddleocr_vl_ov`（`requirements.txt` 已引用）
+  - ⚠️ **不要下 PyTorch 原版**——脚本引擎只认 OpenVINO（-ov）格式
+
+**验证复验生效**：OCR 一张复杂排版 PDF（有表格/多栏），看输出是否出现 VL 复验提示。
 
 ## 四、适配路径（关键）
 
