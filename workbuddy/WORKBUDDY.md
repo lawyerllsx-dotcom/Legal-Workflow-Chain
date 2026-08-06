@@ -42,22 +42,30 @@
 
 仅发现问题时报告，正常不打扰。
 
-## Skill 路由表
+## 规划地图（任务 → 执行路径 → 调用技能）
 
-| 环节 | 技能 | 触发 |
-|------|------|------|
-| ① 接案评估 | 接案评估 | 评估/接案/风险预判/"能不能打" |
-| ② 证据整理 | evidence-catalog-generator | 理证据成目录 |
-| ③ 争点识别 | dispute-issue-identification | 分析争点 |
-| ④ 法条检索 | legal-research | 查法条/案例/赔偿标准 |
-| ⑤ 演绎推理 | deductive-reasoning | 案件逻辑/三段论 |
-| ⑥ 竞合裁决 | conflict-resolution | 法条竞合/证据矛盾 |
-| ⑦ 事实核查 | legal-fact-checker | 检查文书/结论 |
-| ⑧ 引注 | legal-citation-comprehensive | 规范化引注 |
-| ⑨ Word 编辑 | docx-editing | 改 .docx |
-| ⑩ 识图 | vision | 识人识物识场景（非文字） |
+### 任务路由
 
-接力顺序（深链）：接案评估 → 争点识别 → 法条检索 → 演绎 ⟷ 竞合 → 事实核查 → 引注。
+| 用户要什么 | 执行路径 | 调用 |
+|-----------|---------|------|
+| 查法条/案例/赔偿标准/合法性 | 直接检索（元典/tavily）| legal-research |
+| 评估案子/接案/风险预判 | 评估 → 报告 → 复杂度分流 | 接案评估 |
+| 整理证据 | 直接整理 | evidence-catalog-generator |
+| 分析争点 | 直接提取 | dispute-issue-identification |
+| 逻辑推理/三段论 | 直接推理 | deductive-reasoning |
+| 法条竞合/证据矛盾 | 直接裁决 | conflict-resolution |
+| 核查文书/结论 | 直接核查 | legal-fact-checker |
+| 引注/脚注 | 直接格式化 | legal-citation-comprehensive |
+| 改 docx | 直接编辑 | docx-editing |
+| 识图（非文字）| 直接识别 | vision |
+| **多步法律分析/复杂案件** | **先读 workflow-overview** → 按深链路径逐步执行 | workflow-overview 起手 |
+
+### 深链执行路径（复杂案件）
+
+接案评估 → 争点识别 → 法条检索 → 推理（演绎 ⟷ 竞合）→ 事实核查 → 引注/文书
+
+- 每步**读取对应技能的 SKILL.md** 按其步骤执行，不依赖技能间自动接力
+- 每步输出保持五字段（结论/依据/置信度/待核验/待办），依据跟着结论走
 
 > ⚠️ 推理层三 skill（争点识别/演绎/竞合）因来源许可（CC BY-NC-ND）未随本仓库分发——按 [推理层接入指南](../docs/推理层-接入指南.md) 自取原版并本地接线。
 

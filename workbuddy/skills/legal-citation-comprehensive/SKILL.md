@@ -1,0 +1,238 @@
+---
+name: legal-citation-comprehensive
+description: |
+  当用户需要【规范化法学引注/脚注】时使用。触发词：引注、脚注、引用格式、注释、参考文献格式。
+  输出：符合规范的脚注。不做：检索法条、事实核查。
+---
+### 接力模式检测（所有 skill 通用规则）
+
+加载后静默检查：若上下文存在 `[Skill接力: legal-citation-comprehensive]` → **接力模式**。
+- 跳过用户身份询问、新手引导、输出格式选择
+- 从上一 skill 的"接力上下文"+"待办"字段直接获取输入
+- 聚焦完成待办任务，不主动扩展分析范围
+
+# Legal Citation Comprehensive
+
+## 不触发情况（强制排除 —— 满足任一即不触发）
+
+| 用户意图 | 应交由 |
+|----------|--------|
+| 检索法条/案例（找法律依据） | legal-research |
+| 撰写/起草法律文书正文 | legal-fact-checker |
+| 核查文书事实准确性 | legal-fact-checker |
+| 识别/梳理争议焦点 | dispute-issue-identification |
+| 三段论推理/涵摄分析 | deductive-reasoning |
+| 整理证据材料到模板 | evidence-catalog-generator |
+| 编辑 .docx 文件格式 | docx-editing |
+| 仅解决法条竞合/规范冲突 | conflict-resolution |
+
+**判定口诀**：用户只关心"脚注格式/引注规范/引用格式"→ 本 skill；用户要"写正文/查法条/核事实/改格式"→ 不触发。
+
+## 多 Skill 协作接力协议（2026-07-17 更新）
+
+**加载后立即执行**：检查用户请求是否同时需要本 skill 不覆盖的能力。
+
+### 前置接力（先核查/推理再引注）
+
+如果用户请求包含"核查/检查案例是否真实/法规是否过时"等事实核查，但引注来源未经核实 → 必须先由 legal-fact-checker 核查：
+
+```
+[Skill接力: legal-fact-checker]
+接力上下文: 需要先核查引注中引用的法规效力和案例真实性
+待办: 核查完成后回到 legal-citation-comprehensive 格式化脚注
+```
+
+如果用户请求包含"撰写/写作/起草/写"等**创作任务**（如"写一份案例分析/法律意见书+脚注"），本 skill 只负责脚注格式，**必须先由 legal-fact-checker 完成写作**：
+
+```
+[Skill接力: legal-fact-checker]
+接力上下文: 用户要求撰写法律文书，本 skill 只负责引注格式化，写作任务需先由 fact-checker 完成
+待办: 写作完成后回到 legal-citation-comprehensive 格式化脚注
+```
+
+### 引注内容中发现的推理问题分流
+
+在格式化引注时，引注中的法条或案例引用出现异常时的分流：
+
+| 引用异常 | 接力到 | 说明 |
+|----------|--------|------|
+| 引用的法条已失效或被修改 | legal-research | 检索现行有效版本后回到引注格式化 |
+| 同一观点引用了多个冲突法条 | conflict-resolution | 确定优先引用哪个后回到引注格式化 |
+
+**判定关键词**：写、撰写、起草、帮我写、帮我做一份
+
+### 接力前自检（输出接力标记前强制执行）
+
+□ 接力目标是否正确？（引注来源未核实 → fact-checker；法条失效 → legal-research；多法条冲突 → conflict-resolution）
+□ "待办"字段是否包含了需要核验的具体法条编号或案例名称？
+□ 本 skill 的核心任务（引注格式化）是否确实已完成或已确认需前置处理？
+
+执行自检通过后在接力标记前输出确认行：`✅ 接力自检通过: 目标正确([skill-name]) | 待办完整 | 本skill任务已完成`
+
+### 接力标记格式
+
+```
+[Skill接力: next-skill-name]
+接力上下文:
+- 结论: {一句话核心结论}
+- 依据: {关键法条/事实/证据，分条列出}
+- 置信度: {高/中/低 + 理由}
+- 待核验项: {需下一 skill 或人工核实的点；无则填"无"}
+待办: {下一个 skill 需要完成的具体任务}
+```
+
+**注意**：本 skill 通常是法律工作流的最后一站（格式化工序），后置接力场景较少。如用户的引注要素缺失且无法从已有材料提取，应先接力到 legal-research 补全来源信息。
+
+诊断/格式化完成后，末尾提示用户：如需在原文书中直接修正脚注或引注，可让我用 docx-editing 打开编辑。
+
+---
+
+## Role
+
+This skill is the citation brain. It diagnoses and generates citation text. It does not edit Word files directly; use docx-editing to apply corrections to existing .docx files.
+
+Primary rule: never invent missing bibliographic facts. If a required element is absent and cannot be extracted from a provided source, mark it as `[待补: 要素名]` and tell the user where to find it.
+
+Completeness rule: the simplified templates are not the whole handbook. Before giving a final answer for any non-trivial citation, consult a legally obtained copy of the citation handbook or a user-provided rule index. This public repository does not redistribute third-party handbook PDFs or OCR dumps. Use `references/citation_rules.json` only as a fast execution layer when the user or local installation provides it.
+
+Weak-agent guardrail: if you are unsure, do not improvise. Follow `references/operator_guardrails.md` exactly. A citation answer is not complete unless it states the source type, missing elements, lookup path, suggested format, and relevant handbook rule numbers.
+
+## Quick Workflow
+
+1. Classify the citation type.
+   - Search the user-provided handbook/rule index for the source category and rule numbers.
+   - Use `references/citation_rules.json` for required elements, templates, and handbook anchors when that optional local reference file is available.
+   - If the repository lacks full reference data, stop at diagnosis/placeholders and tell the user what source material is needed.
+2. Extract existing elements from the messy footnote or supplied source.
+3. Diagnose missing required and optional elements.
+4. Give source lookup guidance from `references/source_lookup_guide.md`.
+5. Generate a standard citation.
+   - If complete: output the final footnote.
+   - If incomplete: output a placeholder version and a precise checklist.
+6. For Chinese Civil Law homework, apply the course-specific statute rule:
+   - If正文 only names a statute article, the footnote should include the article text.
+   - If正文 already quotes the full article and the footnote adds nothing, omit the footnote.
+7. Run `python scripts/self_test.py` after changing this skill or before distributing it. Full handbook coverage tests require locally supplied reference data.
+
+## Deterministic Helper
+
+For a first-pass report, run:
+
+```bash
+python scripts/citation_diagnose.py --text "王名扬《美国行政法》第18页"
+```
+
+Or:
+
+```bash
+python scripts/citation_diagnose.py footnotes.txt --json
+```
+
+The script provides classification, present/missing elements, source lookup hints, and a template-based corrected citation when local rule data is available. Treat script output as a first pass; verify edge cases against the handbook.
+
+## Standard Answer Shape
+
+When responding to a user, use this shape unless they ask for something else:
+
+```text
+识别结果：
+- 类型：
+- 置信度：
+
+已有要素：
+- ...
+
+缺失/需确认要素：
+- ...
+
+去哪里找：
+- ...
+
+建议格式：
+...
+
+注意：
+- ...
+```
+
+## Source Extraction Rules
+
+- PDF book: inspect cover, copyright page, title page, table of contents area. Use copyright page for publisher, year, edition.
+- PDF article: inspect first page and page headers/footers. Use article first page for author, title, journal, year, issue, start page.
+- Statute or judicial interpretation: prefer available legal database MCP (元典 yuandian_* or PKULaw). Capture full official name, article number, paragraph/item, current validity, and article text if needed.
+- Case: capture case name, court, docket number, document type, source series/database. Public bulletin, guiding case, and People’s Court Case Library entries use their own formats.
+- Web source: capture author if available, article title, platform/site, publication date, URL, and access date.
+
+## Important Rules
+
+- Chinese books: `作者：《书名》，出版社年份年版，第X页。`
+- Chinese journal articles: `作者：《论文名》，载《期刊名》年份年第X期，第X页。`
+- Edited collections: `作者：《文章名》，载编者主编：《书名》，出版社年份年版，第X页。`
+- Statutes: `《法律名称》第X条第Y款第Z项。` Use Arabic numerals.
+- Normative documents: include document number when available, e.g. `《文件名称》（发文字号）。`
+- Cases: include case name, court, docket number, and document type unless citing a special source such as a bulletin or guiding case.
+- Chinese repeat citations use `同前注〔X〕，第Y页。` or a clear short form. Do not use `前引`, `同上`, `supra`, or `Ibid.` for Chinese sources.
+- Direct quotation: no `参见`; indirect or conceptual borrowing: use `参见`; secondary citation: use `转引自`.
+
+## Full Handbook Coverage
+
+The rule index is mandatory for careful work:
+
+- Rules 1-24: general citation principles, citation placement, repeat citation, punctuation, article metadata.
+- Rules 25-49: printed Chinese publications, authors, editors, translators, titles, editions, publisher/year, pages, chapters.
+- Rules 50-58: online, electronic, broadcast, television, and audiovisual materials.
+- Rules 59-65: unpublished materials, interviews, private correspondence, internal materials, conference papers, theses, archives.
+- Rules 66-86: Chinese legal and official documents, laws, regulations, normative documents, standards, reports, white papers, Hong Kong/Macau/Taiwan legal documents, foreign law, treaties, UN documents.
+- Rules 87-91: judicial cases.
+- Rules 92-94: statistical data and charts.
+
+For any source type not explicitly represented in `citation_rules.json`, search the user-provided handbook or rule index by rule number or source name. If the OCR text is unclear, verify against the legally obtained original document.
+
+## Reference Navigation
+
+- `references/README_REFERENCE_DATA.md`: explains which optional reference files are intentionally not redistributed.
+- `references/handbook_rule_index.json`: optional local full machine-readable index of rules 1-150. Load/search this for exhaustive coverage if the user provides it.
+- `references/handbook_rule_index.md`: optional readable version of the full index with raw line ranges.
+- `references/citation_rules.json`: optional machine-readable rule source. Load this first if present.
+- `references/missing_elements_matrix.md`: quick checklist for missing elements by type.
+- `references/source_lookup_guide.md`: where to find missing bibliographic facts.
+- `references/operator_guardrails.md`: strict operating rules for other AI agents.
+- `references/common_errors.md`: common mistakes and course-specific footnote traps.
+- `references/citation_handbook_structured.md`: structured digest of the handbook.
+- `assets/Law_Journal_Citation_Handbook_2025.pdf`: original handbook PDF for final verification when needed.
+
+## Reference Data Build
+
+When a user has their own legally obtained copy of the handbook PDF, prefer the deterministic local builder before asking an AI to improvise the reference files:
+
+```bash
+python3 scripts/build_reference_data.py
+```
+
+The builder checks whether the PDF is searchable, extracts local Markdown, builds the 1-150 rule index, writes `citation_rules.json`, and then runs validation. If it refuses to overwrite existing files, rerun with `--force` only after the user confirms they want to rebuild local reference data. If extraction is incomplete, run:
+
+```bash
+python3 scripts/build_reference_data.py --print-ai-contract
+```
+
+Then use the printed contract to repair the local files.
+
+## Reference Data Audit
+
+When a user rebuilds handbook reference data from their own PDF/OCR, do not trust the generated files merely because they exist. If the builder was not used, run:
+
+```bash
+python3 scripts/audit_reference_data.py
+python3 scripts/self_test.py
+```
+
+`audit_reference_data.py` checks required files, rule count, continuous rule numbers, category ranges, raw line ranges, common rule hints, OCR/mojibake markers, and `citation_rules.json` shape. If it reports `ERRORS`, stop and repair the reference data before claiming full handbook coverage.
+
+## Relationship to Other Skills
+
+- `docx-editing`: use after this skill has produced or approved footnote text; handles DOCX insertion with formatting preservation.
+- `legal-research`: use when missing law or case source facts require legal database retrieval (元典 MCP).
+
+## 关联知识（可选）
+
+如已搭建个人知识库，可引用方法论页对齐既有经验；无知识库时直接使用本 skill，不影响核心功能。
