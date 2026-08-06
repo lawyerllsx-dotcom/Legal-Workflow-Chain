@@ -1,0 +1,39 @@
+{
+  "mcpServers": {
+    "yuandian-case": {
+      "type": "http",
+      "url": "https://open.chineselaw.com/mcp/case/stream",
+      "headers": {
+        "Authorization": "Bearer 你的元典开放平台API Key"
+      }
+    },
+    "yuandian-company": {
+      "type": "http",
+      "url": "https://open.chineselaw.com/mcp/company/stream",
+      "headers": {
+        "Authorization": "Bearer 你的元典开放平台API Key"
+      }
+    },
+    "yuandian-law": {
+      "type": "http",
+      "url": "https://open.chineselaw.com/mcp/law/stream",
+      "headers": {
+        "Authorization": "Bearer 你的元典开放平台API Key"
+      }
+    },
+    "tavily": {
+      "type": "http",
+      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=你的tavilyAPIKey"
+    },
+    "safe-docx": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-safe-docx"]
+    },
+    "pdf-tools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-pdf"]
+    }
+  }
+}
