@@ -236,6 +236,7 @@ Legal-Workflow-Chain/
 想把这套工作流装进 **腾讯 WorkBuddy**（桌面 agent，低门槛，无需装 VS Code + Claude Code）？项目提供**第二套方案**：
 
 - **[workbuddy/ 迁移方案](workbuddy/README.md)** — WorkBuddy 适配版：8 个随包技能（含 `workflow-overview` 总览）+ 推理层 3 个按[接入指南](docs/推理层-接入指南.md#四bworkbuddy-用户的适配用-workbuddy-而非-claude-code-时)自取接线（[适配工具](workbuddy/推理层适配工具/README.md) 一键改 description，凑齐 11 个）+ 编排规则 + 引导式安装（模型 / MCP / Obsidian / OCR 两档，OCR 工具随包）
+- **知识库复利对齐**：项目「指令」字段 = WorkBuddy 的 CLAUDE.md——收纳（Ingest）、高价值问答主动提醒收纳、提炼式案件归档（复盘/回溯）、图片处理路由（DeepSeek 无视觉 → 切视觉模型/走本地 OCR）全部写成指令条目，WorkBuddy 每次对话强制遵守，与 Claude Code 版体验对齐
 - **核心区别**：Claude Code 版靠 CLAUDE.md **强约束接力**；WorkBuddy 版靠**自主规划 + 触发钩子**（description 统一优化 + 总览 skill），适配 WorkBuddy 的模型触发机制
 - **两套独立**：主仓库 `skills/` 是 Claude Code 版（7 个）；`workbuddy/skills/` 是 WorkBuddy 适配版（8 个随包，description 已为 WorkBuddy 模型定制）。推理层 3 个（争点/演绎/竞合）因 CC BY-NC-ND 均不随仓库分发，两套都需按[接入指南](docs/推理层-接入指南.md)自取接线
 
