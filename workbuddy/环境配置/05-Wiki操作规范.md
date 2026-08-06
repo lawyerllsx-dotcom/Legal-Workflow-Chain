@@ -2,13 +2,12 @@
 
 > 作者实际使用的知识库操作规范（从 CLAUDE.md 的 wiki 约定 + [LLM Wiki 方法论](04-LLM-Wiki方法论.md) 提炼）。
 > **目的**：让 WorkBuddy 按此建立和维护 wiki，获得与作者**一致的知识库体验**（结构、命名、链接、三操作、纪律全部对齐）。
-> **用法**：建 wiki 时先读本文，按规范执行；放工作目录，配合 Obsidian 使用。
+> **用法**：建 wiki 时先读本文，按规范执行；知识库建在你的 Obsidian vault 文件夹（配合 Obsidian 使用）。
 
 ## 一、目录结构
 
 ```
-<vault 工作目录>/
-├── .workbuddy/           # 配置（含 memory/MEMORY.md 编排规则）
+<Obsidian vault 文件夹>/
 ├── raw/                  # 原始材料（PDF/文章/案卷），只读不修改
 └── wiki/                 # 知识库（LLM 生成和维护）
     ├── index.md          # 索引页（先建，最重要）

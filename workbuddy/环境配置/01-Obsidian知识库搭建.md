@@ -1,6 +1,6 @@
 # 环境配置 · 01 — Obsidian 知识库搭建
 
-> 给 WorkBuddy 的 AI 当引导剧本用，也给人照着做。目标：搭出和你工作目录配套的知识库（wiki），让 skill 用起来有沉淀。
+> 给 WorkBuddy 的 AI 当引导剧本用，也给人照着做。目标：搭出和你的 WorkBuddy 项目配套的知识库（wiki），让 skill 用起来有沉淀。
 
 ## 一、装 Obsidian
 
@@ -9,7 +9,7 @@
    - 点 "Open folder as vault" / 新建
    - 选一个本地文件夹作为库（建议建一个专用文件夹，如 `D:\LegalWiki` 或文档里的 `我的法律工作`）
 
-> 这个 vault 文件夹就是你的**工作目录**。WorkBuddy 打开它干活，WORKBUDDY.md 也放这里。
+> 这个 vault 文件夹是**知识库存储**（wiki/raw 放这里），它和 WorkBuddy 的「项目」（AI 干活的工作区域）是**两个东西**：WorkBuddy 项目负责"跑 AI、调技能、出分析"，vault 负责"存知识、攒复利"。两者通过「项目指令里说明 vault 路径」配合。WORKBUDDY.md 也放 vault 根。
 
 ## 二、建 wiki 目录结构
 
@@ -17,7 +17,6 @@
 
 ```
 <你的vault>/
-├── .workbuddy/           # 配置（含 memory/MEMORY.md 编排规则，从迁移包复制）
 ├── raw/                  # 原始材料（PDF、文章、案卷），只读不修改
 └── wiki/                 # 知识库（AI 生成和维护）
     ├── index.md          # 索引页（最重要，先建）
@@ -33,14 +32,15 @@
 
 ## 三、放规则文件
 
-把迁移包里的 **`.workbuddy/`** 文件夹复制到 vault 根目录——里面的 `.workbuddy/memory/MEMORY.md` 是 WorkBuddy 自动加载的编排规则（驱动路由裁决 / 复杂度三问 / F1-F5 / 接案评估自动触发）。
+编排规则（`MEMORY.md` 内容）**粘贴到 WorkBuddy 项目的「指令」字段**，见 `安装说明.md` 阶段 C。本 vault 文件夹保持为纯知识库存储即可。
 
 ## 四、按操作规范建立（关键）
 
 **不要只建空目录**——让 WorkBuddy 按《Wiki 操作规范》建立（和作者一致），先读 `05-Wiki操作规范.md`（可执行规范）+ `04-LLM-Wiki方法论.md`（底层思想）：
 
-1. 在 WorkBuddy 打开 vault，说：
+1. 在 WorkBuddy **项目的新对话**里，说：
    > "读 `环境配置/05-Wiki操作规范.md` 和 `环境配置/04-LLM-Wiki方法论.md`，按这套规范帮我建知识库：先建 index.md 和 log.md，建好 wiki 分类（concepts/entities/sources/synthesis/checklists/sessions）+ raw/，然后我往里放资料，你按 Ingest 逐步摄入并维护"
+   （确保项目「指令」里已说明 vault 路径，WorkBuddy 才能知道往哪建）
 2. 建好后，三操作和作者完全一致：
 
 | 操作 | 你说 | AI 做 |
