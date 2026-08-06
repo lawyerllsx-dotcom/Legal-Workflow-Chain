@@ -22,7 +22,8 @@
 ## 与主仓库的关系
 
 - 主仓库 `skills/`（7 个公开 skill）可直接部署到 WorkBuddy（SKILL.md 是 OpenClaw/WorkBuddy 同规范）。
-- **推理层 3 个 skill**（争点识别/演绎/竞合）因来源许可（CC BY-NC-ND）**未随仓库分发**——WorkBuddy 版按 [推理层接入指南](../docs/推理层-接入指南.md) 自取原版并本地接线。
+- **本板块 `workbuddy/skills/` 共 8 个适配版 skill**（description 已为 WorkBuddy 触发钩子优化），`docs/` 另有 7 个 Claude Code 版。
+- **推理层 3 个 skill**（争点识别/演绎/竞合）因来源许可（CC BY-NC-ND）**未随仓库分发**——WorkBuddy 版按 [推理层接入指南](../docs/推理层-接入指南.md) 自取原版并本地接线。**WorkBuddy 适配三步（description 触发钩子 / 编排层载体 / 总览衔接）见该指南 [四·B 节](../docs/推理层-接入指南.md#四bworkbuddy-用户的适配用-workbuddy-而非-claude-code-时)。**
 - 本地 OCR 工具（PP-OCRv6 脚本）为作者私有，不在此公开——需要的朋友从作者处索取。
 
 ## 关键机制（官方确认）
