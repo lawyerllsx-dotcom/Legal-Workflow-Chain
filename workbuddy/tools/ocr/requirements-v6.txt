@@ -13,7 +13,6 @@ openvino-genai==2026.2.1.0
 openvino-telemetry==2025.2.0
 openvino-tokenizers==2026.2.1.0
 paddleocr==3.7.0
--e git+https://github.com/zhaohb/paddleocr_vl_ov.git@598857c1272c2b7224109ad4573974f7d4cc260f#egg=paddleocr_vl_openvino
 paddlepaddle==3.2.2
 paddlex==3.7.2
 pillow==12.3.0
