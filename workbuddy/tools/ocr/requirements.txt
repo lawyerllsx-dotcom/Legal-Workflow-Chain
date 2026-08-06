@@ -1,0 +1,24 @@
+huggingface_hub==0.36.2
+modelscope==1.38.0
+modelscope-hub==0.1.6
+numpy==2.3.5
+onnx==1.22.0
+onnxruntime==1.27.0
+onnxruntime-directml==1.24.4
+onnxruntime-openvino==1.24.1
+opencv-contrib-python==4.10.0.84
+opencv-python==5.0.0.93
+openvino==2026.2.1
+openvino-genai==2026.2.1.0
+openvino-telemetry==2025.2.0
+openvino-tokenizers==2026.2.1.0
+paddleocr==3.7.0
+-e git+https://github.com/zhaohb/paddleocr_vl_ov.git@598857c1272c2b7224109ad4573974f7d4cc260f#egg=paddleocr_vl_openvino
+paddlepaddle==3.2.2
+paddlex==3.7.2
+pillow==12.3.0
+pyclipper==1.4.0
+PyYAML==6.0.2
+rapidocr-onnxruntime==1.4.4
+shapely==2.1.2
+tqdm==4.68.3

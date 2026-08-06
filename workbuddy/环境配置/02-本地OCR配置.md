@@ -1,7 +1,7 @@
 # 环境配置 · 02 — 本地 OCR（两档：通用 V6 / 完整 V6+VL）
 
 > 给 WorkBuddy 的 AI 当引导剧本。目标：装好本地 OCR，处理 PDF/图片里的文字（中文案卷），**不联网、不上传**。
-> 工具脚本（`ocr.bat` / `ocr_run.py` / `ocr_watch.py` / `ocr_contract.py` / `requirements.txt`）为作者私有，向作者索取；或按本文自行搭建。
+> 工具脚本（`ocr.bat` / `ocr_run.py` / `ocr_watch.py` / `ocr_contract.py` / `requirements.txt`）随本包提供于 `tools/ocr/`，按本文适配本机路径即可。
 
 ## 一、先选档（关键）
 
@@ -17,7 +17,7 @@
 
 ## 二、OCR 工具脚本
 
-OCR 工具脚本（`ocr.bat` / `ocr_run.py` / `ocr_watch.py` / `ocr_contract.py` / `requirements.txt`）为作者私有，**可向作者索取**；也可以按本文自行搭建 OpenVINO / PaddleOCR 环境。
+OCR 工具脚本（`ocr.bat` / `ocr_run.py` / `ocr_watch.py` / `ocr_contract.py` / `requirements.txt`）在 `tools/ocr/`，直接用即可；也可按本文自行搭建 OpenVINO / PaddleOCR 环境。
 
 ## 三、通用档：装 Python 环境
 

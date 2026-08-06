@@ -18,13 +18,14 @@
 | [测试与排查指南.md](测试与排查指南.md) | 装完逐项测试 + 反馈表 |
 | [mcp.json](mcp.json) / [models.json](models.json) | 配置模板（填你自己的 key）|
 | [环境配置/](环境配置/) | Obsidian 知识库 / 本地 OCR / 模型与 Key 三份搭建文档 |
+| [推理层适配工具/](推理层适配工具/README.md) | 把 THUYRan 原版推理层 3 skill 一键适配为 WorkBuddy 可触发版 |
 
 ## 与主仓库的关系
 
 - 主仓库 `skills/`（7 个公开 skill）可直接部署到 WorkBuddy（SKILL.md 是 OpenClaw/WorkBuddy 同规范）。
 - **本板块 `workbuddy/skills/` 共 8 个适配版 skill**（description 已为 WorkBuddy 触发钩子优化），`docs/` 另有 7 个 Claude Code 版。
-- **推理层 3 个 skill**（争点识别/演绎/竞合）因来源许可（CC BY-NC-ND）**未随仓库分发**——WorkBuddy 版按 [推理层接入指南](../docs/推理层-接入指南.md) 自取原版并本地接线。**WorkBuddy 适配三步（description 触发钩子 / 编排层载体 / 总览衔接）见该指南 [四·B 节](../docs/推理层-接入指南.md#四bworkbuddy-用户的适配用-workbuddy-而非-claude-code-时)。**
-- 本地 OCR 工具（PP-OCRv6 脚本）为作者私有，不在此公开——需要的朋友从作者处索取。
+- **推理层 3 个 skill**（争点识别/演绎/竞合）因来源许可（CC BY-NC-ND）**未随仓库分发**——WorkBuddy 版按 [推理层接入指南](../docs/推理层-接入指南.md) 自取原版并本地接线。**WorkBuddy 适配三步（description 触发钩子 / 编排层载体 / 总览衔接）见该指南 [四·B 节](../docs/推理层-接入指南.md#四bworkbuddy-用户的适配用-workbuddy-而非-claude-code-时)，或用 [适配工具](推理层适配工具/README.md) 一键改 description。**
+- 本地 OCR 工具（PP-OCRv6 脚本）随本板块提供于 `tools/ocr/`——含路径占位符（`D:\ai-models`），装时按本机实际路径调整。
 
 ## 关键机制（官方确认）
 
