@@ -1,6 +1,6 @@
 # WORKBUDDY.md — 法律 AI 工作流编排规则（WorkBuddy 版）
 
-> 这是把 LegalChain 工作流适配到 **腾讯 WorkBuddy** 的编排规则。用法（二选一，推荐都做）：
+> 这是把 Legal-Workflow-Chain 工作流适配到 **腾讯 WorkBuddy** 的编排规则。用法（二选一，推荐都做）：
 > ① **新建 WorkBuddy 项目 → 把本文件内容粘贴到项目「指令」字段**——官方确认该字段是"对 AI 的全局行为规则，所有任务自动继承"。
 > ② **复制为 `.workbuddy/memory/MEMORY.md`**（放工作目录）——作为个人记忆注入上下文。
 > 配合 `skills/` 下的技能使用（部署见 [部署说明.md](部署说明.md)）。

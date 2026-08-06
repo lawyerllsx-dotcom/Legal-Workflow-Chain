@@ -1,6 +1,6 @@
 # WorkBuddy 迁移方案（初版）
 
-> 把 LegalChain 法律 AI 工作流适配到 **腾讯 WorkBuddy**（桌面 agent，低门槛，无需装 VS Code + Claude Code）。
+> 把 Legal-Workflow-Chain 法律 AI 工作流适配到 **腾讯 WorkBuddy**（桌面 agent，低门槛，无需装 VS Code + Claude Code）。
 > 供想用 WorkBuddy 而非 Claude Code 的朋友/同事使用。
 
 ## 这是什么
