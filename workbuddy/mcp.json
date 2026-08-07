@@ -21,10 +21,6 @@
         "Authorization": "Bearer 你的元典开放平台API Key"
       }
     },
-    "tavily": {
-      "type": "http",
-      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=你的tavilyAPIKey"
-    },
     "safe-docx": {
       "type": "stdio",
       "command": "npx",

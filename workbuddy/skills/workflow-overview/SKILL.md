@@ -17,7 +17,7 @@ description: |
 |------|------|--------|
 | ① 接案评估 | 接案评估 | 整体评估 → 《案件评估报告》→ 复杂度分流 |
 | ② 争点识别 | dispute-issue-identification | 从事实提取争议焦点 |
-| ③ 法条检索 | legal-research | 查法条/案例（元典 MCP / tavily 兜底）|
+| ③ 法条检索 | legal-research | 查法条/案例（元典 MCP / 内置联网兜底）|
 | ④ 推理 | deductive-reasoning / conflict-resolution | 三段论推理 / 法条竞合裁决 |
 | ⑤ 核查输出 | legal-fact-checker / legal-citation / docx-editing | 事实核查 / 引注 / 文书编辑 |
 
@@ -38,7 +38,7 @@ description: |
 ## 规划要点
 
 - 每步**按需读取**对应技能的 SKILL.md，按其步骤执行；不依赖技能间自动接力
-- 检索一律走元典 MCP / tavily，**不凭记忆**编法条
+- 检索一律走元典 MCP / 内置联网，**不凭记忆**编法条
 - 零容忍项（案号/法条编号/当事人/金额）必须核验，不确定标 `[待核实]`
 - 每步输出保持五字段（结论 / 依据 / 置信度 / 待核验 / 待办），依据跟着结论走
 - 检索源不可用时标 `[待补]`，不编造
