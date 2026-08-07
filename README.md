@@ -239,6 +239,7 @@ Legal-Workflow-Chain/
 - **知识库复利对齐**：项目「指令」字段 = WorkBuddy 的 CLAUDE.md——收纳（Ingest）、高价值问答主动提醒收纳、提炼式案件归档（复盘/回溯）、图片处理路由（DeepSeek 无视觉 → 切视觉模型/走本地 OCR）全部写成指令条目，WorkBuddy 每次对话强制遵守。**进阶**：插件化 Hook 强制注入 wiki 索引（[方案](workbuddy/docs/workbuddy-hook-知识库强制注入.md)），"回答前先读 wiki"从软规则升级为技术强制
 - **实测验证**：T1-T9 全部通过（9/9）＋环境全量自检 8/8——技能触发/编排/元典检索/内置联网/知识库收纳+复用+lint/深链自主规划全链路跑通；`[待核实]` 零容忍、法条元典核验不凭记忆、收纳增量判断均正确执行
 - **核心区别**：Claude Code 版靠 CLAUDE.md **强约束接力**；WorkBuddy 版靠**自主规划 + 触发钩子**（description 统一优化 + 总览 skill）+ 插件化 hooks，适配 WorkBuddy 的模型触发机制
+- **上手操作路径**：一切在「**项目**」里配（项目内加技能 + 项目内贴指令 + 用户级 MEMORY.md 固定文件目录），一切对话在「**空间**」里开（左侧空间选该项目 → 新建对话）——见 [workbuddy/README 上手操作路径](workbuddy/README.md#上手操作路径workbuddy-里具体点哪几步)
 - **关键机制差异**（实测踩坑）：① WorkBuddy **顶层 settings.json hooks 字段被忽略**，必须走插件机制（市场注册→plugin.json→enabledPlugins→完全重启），不能按 Claude 文档照搬；② 项目 = 会话分组 ≠ 文件工作目录，新对话默认临时目录，固定目录靠**用户级 `~/.workbuddy/MEMORY.md`**；③ 联网内置（无需 tavily），GLM 界面直接添加（无需改 models.json）
 - **两套独立**：主仓库 `skills/` 是 Claude Code 版（7 个）；`workbuddy/skills/` 是 WorkBuddy 适配版（8 个随包，description 已为 WorkBuddy 模型定制）。推理层 3 个（争点/演绎/竞合）因 CC BY-NC-ND 均不随仓库分发，两套都需按[接入指南](docs/推理层-接入指南.md)自取接线
 
