@@ -32,6 +32,17 @@
       "maxOutputTokens": 8192,
       "supportsToolCall": true,
       "supportsImages": true
+    },
+    {
+      "id": "glm-4.6v",
+      "name": "智谱 GLM-4.6V",
+      "vendor": "Zhipu",
+      "url": "https://open.bigmodel.cn/api/paas/v4",
+      "apiKey": "你的智谱API Key",
+      "maxInputTokens": 128000,
+      "maxOutputTokens": 8192,
+      "supportsToolCall": true,
+      "supportsImages": true
     }
   ]
 }
