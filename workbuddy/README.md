@@ -1,5 +1,6 @@
-# WorkBuddy 迁移方案（实测验证版）
+# WorkBuddy 迁移方案（实测验证版 · 重大更新）
 
+> 🚀 **重大更新（2026-08-07）**：从"初版方案"升级为**实测验证版**——两次真实环境迁移（两位朋友）全程验证通过，F 阶段 OCR 卡点根因确诊并修复（safe-delete 全覆盖）。
 > 把 Legal-Workflow-Chain 法律 AI 工作流适配到 **腾讯 WorkBuddy**（桌面 agent，低门槛，无需装 VS Code + Claude Code）。
 > 供想用 WorkBuddy 而非 Claude Code 的朋友/同事使用。
 > ✅ **2026-08 真实环境全量实测通过**：T1-T9 测试 9/9、环境全量自检 8/8、知识库复利闭环（收纳/复用/lint）验证。

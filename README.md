@@ -233,6 +233,8 @@ Legal-Workflow-Chain/
 
 ## 🔀 WorkBuddy 迁移方案（实测验证通过）
 
+> 🚀 **重大更新（2026-08-07）**：WorkBuddy 适配从"初版方案"升级为**实测验证版**——真实环境 T1-T9 全过 + 全量自检 8/8 + 知识库复利闭环 + 深链自主规划全链路验证。新增知识库强制注入 Hook（技术底座）、深链随访机制、检索三级降级链。
+
 想把这套工作流装进 **腾讯 WorkBuddy**（桌面 agent，低门槛，无需装 VS Code + Claude Code）？项目提供**第二套方案**，已在真实环境完整验证（2026-08-07，T1-T9 全过 + 全量自检 8/8）：
 
 - **[workbuddy/ 迁移方案](workbuddy/README.md)** — WorkBuddy 适配版：8 个随包技能（含 `workflow-overview` 总览）+ 推理层 3 个按[接入指南](docs/推理层-接入指南.md#四bworkbuddy-用户的适配用-workbuddy-而非-claude-code-时)自取接线（[适配工具](workbuddy/推理层适配工具/README.md) 一键改 description，凑齐 11 个）+ 编排规则 + 引导式安装（模型 / MCP / Obsidian / OCR 两档，OCR 工具随包）
