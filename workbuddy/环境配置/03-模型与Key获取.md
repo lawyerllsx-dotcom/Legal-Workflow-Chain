@@ -16,7 +16,7 @@ WorkBuddy 需接大模型干活。**只需配 DeepSeek**（日常主力，便宜
   - DeepSeek：`url=https://api.deepseek.com/v1`，`id=deepseek-v4-pro` / `deepseek-v4-flash`
 
 > 💡 **GLM 直接添加，不用改配置文件**：WorkBuddy **设置 → 模型 → 添加模型**，把 GLM 也加上（界面操作，方便随时切换），传图时**切到 GLM 识别**，识别完切回 DeepSeek 继续（上下文不变）。不必在 models.json 里手动加 GLM 条目。
-> ⚠️ 配置 url 必须写完整地址（含 `/v1` 或 `/v4` 路径），不能只写域名。
+> ⚠️ **url 必须写完整接口地址**（实测踩坑 2026-08-07）：WorkBuddy 拿 `url` **直接当请求接口用**，不自动补路径。写 `https://api.deepseek.com/v1` 这类 base url 会 400；要写完整到**含 `/chat/completions`**（DeepSeek：`https://api.deepseek.com/v1/chat/completions`）。GLM 界面添加时同样注意。
 
 ## 二、法条/案例检索 Key（推荐配）
 
