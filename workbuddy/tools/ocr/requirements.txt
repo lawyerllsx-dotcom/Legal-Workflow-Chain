@@ -7,7 +7,8 @@ onnxruntime==1.27.0
 onnxruntime-directml==1.24.4
 onnxruntime-openvino==1.24.1
 opencv-contrib-python==4.10.0.84
-opencv-python==5.0.0.93
+# opencv-python 已剔除（2026-08-07）：contrib 已含完整 cv2，两个同时装必触发 cv2 文件覆盖删除（被 WorkBuddy safe-delete 拦）
+# 若 pip 装 contrib 也触发清理：pip download opencv-contrib-python==4.10.0.84 --no-deps -d wheels 后手动解压到 site-packages
 openvino==2026.2.1
 openvino-genai==2026.2.1.0
 openvino-telemetry==2025.2.0

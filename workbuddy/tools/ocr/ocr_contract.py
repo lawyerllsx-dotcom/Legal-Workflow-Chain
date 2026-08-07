@@ -257,7 +257,10 @@ def process_pdf_pages(pdf_path: Path, dpi: int = 150, preprocess: bool = False,
     """Returns (pages, tmp_dir) where pages = [(page_num, content_or_img_path, is_text)].
 
     page_range: (start, end) 1-based inclusive, None = all pages."""
-    import fitz
+    try:
+        import fitz
+    except ImportError:
+        import pymupdf as fitz  # PyMuPDF 1.28+ may drop the fitz alias
     doc = fitz.open(str(pdf_path))
     total = doc.page_count
 
