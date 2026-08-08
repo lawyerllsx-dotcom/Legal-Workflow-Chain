@@ -5,7 +5,7 @@ description: |
   输出：图片内容的文字描述。不做：文字内容识别（文档/票据文字走 OCR，不用本技能）。
 ---
 
-# vision
+# vision（WorkBuddy 适配版）
 
 Multi-provider vision tool. Call various vision models to describe images. Feed it a prompt + image path, get back a text description.
 
