@@ -1,5 +1,6 @@
 # WorkBuddy 迁移方案（实测验证版 · 重大更新）
 
+> 🚀 **重大更新（2026-08-08）**：**部署改进第 3 轮**——① **OCR 一键安装 `setup_ocr.bat`**（双击即装，自动建 venv/装依赖/验证，内置 safe-delete 规避，解决部署最大卡点）；② **OCR 依赖坑修复**（safe-delete 全覆盖、opencv 冲突、fitz 兼容、镜像源、venv 换名）；③ **skill 修复**（legal-research description 超长块 → WorkBuddy 正常显示 + 补关联 wiki）；④ **线上 paddleocr VL-1.6 高精度备选**（02 文档第八节：配置/排查/AI Studio 额度位置，仅非案件材料）。
 > 🚀 **重大更新（2026-08-07）**：从"初版方案"升级为**实测验证版**——两次真实环境迁移（两位朋友）全程验证通过，F 阶段 OCR 卡点根因确诊并修复（safe-delete 全覆盖）。
 > 把 Legal-Workflow-Chain 法律 AI 工作流适配到 **腾讯 WorkBuddy**（桌面 agent，低门槛，无需装 VS Code + Claude Code）。
 > 供想用 WorkBuddy 而非 Claude Code 的朋友/同事使用。
